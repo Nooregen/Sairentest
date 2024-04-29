@@ -6,14 +6,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
+  private readonly BASE_URL = 'http://localhost:3000';
+
   constructor(private http: HttpClient) { }
 
-  generateToken(): Observable<any> {
-    return this.http.get('http://localhost:3000/generate-token');
+  generateToken(captchaResponse: string): Observable<any> {
+    return this.http.post(`${this.BASE_URL}/generate-token`, { captchaResponse });
   }
 
-  // Assure-toi que la réponse est traitée comme un Blob
   downloadImage(): Observable<Blob> {
-    return this.http.get('http://localhost:3000/download', { responseType: 'blob' });
+    const headers = { 'Authorization': 'Bearer ' + localStorage.getItem('token') };
+    return this.http.get(`${this.BASE_URL}/download`, { headers: headers, responseType: 'blob' });
   }
 }

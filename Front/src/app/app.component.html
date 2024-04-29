@@ -1,9 +1,12 @@
-<div>
-  <h2>Télécharger une image</h2>
-  <!-- Ajoute l'événement (click) et supprime (submit) pour empêcher le rechargement de la page -->
-  <button (click)="downloadImage($event)">Télécharger Image</button>
-</div>
-<div>
-  <h2>Générer un Token</h2>
-  <button (click)="generateToken()">Générer Token</button>
+<div class="container">
+  <img src="assets/Sairen2.png" alt="Logo" class="logo">
+
+  <div class="captcha-container">
+    <h2>Lancer le téléchargement</h2>
+    <re-captcha (resolved)="resolved($event)" siteKey="6LcU58opAAAAAEoNAwFJVXYxJn4kVukh64e_X9nq"></re-captcha>
+    <button (click)="generateToken()" [disabled]="!isCaptchaValid">Lancer le téléchargement</button>
+    <div *ngIf="isDownloadInProgress" class="progress">
+      <div class="progress-bar" [style.width]="progress + '%'"></div>
+    </div>
+  </div>
 </div>
