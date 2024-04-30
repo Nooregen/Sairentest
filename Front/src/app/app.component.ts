@@ -7,27 +7,28 @@ import { ApiService } from './api.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  
+ 
   tokenStatus: string = '';
   captcha: string | undefined;
   isCaptchaValid = false;
   isDownloadInProgress = false;
   progress = 0;
+  isGrecaptchaInLocalStorage = !!localStorage.getItem('_grecaptcha');
 
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
     this.checkToken();
   }
-  
+ 
   checkToken() {
     const token = localStorage.getItem('token');
     this.tokenStatus = token ? 'Token présent.' : 'Aucun token. Veuillez générer un token.';
   }
 
   resolved(captchaResponse: string | null) {
-    this.captcha = captchaResponse ?? ""; 
-    this.isCaptchaValid = !captchaResponse;
+    this.captcha = captchaResponse ?? "";
+    this.isCaptchaValid = !!captchaResponse;
   }
 
   generateToken() {
@@ -41,6 +42,7 @@ export class AppComponent implements OnInit {
         next: (response) => {
           localStorage.setItem('token', response.token);
           this.tokenStatus = 'Token généré et stocké avec succès.';
+          this.isGrecaptchaInLocalStorage = false;
           this.startDownloadProgress();
         },
         error: (err) => {
@@ -63,7 +65,7 @@ export class AppComponent implements OnInit {
         this.isDownloadInProgress = false;
         this.downloadImage();
       }
-    }, 1000); // Augmente la progression toutes les 1 secondes
+    }, 1000);
   }
 
   downloadImage() {

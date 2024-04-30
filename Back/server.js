@@ -26,7 +26,6 @@ app.post('/generate-token', (req, res) => {
 });
 
 function validateCaptcha(captchaResponse, callback) {
-  // Logique de validation du CAPTCHA
   callback(true);
 }
 

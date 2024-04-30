@@ -1,61 +1,70 @@
 body {
-    background-color: #110e21;
-  }
-  
-  .logo {
-    width: 160px;
-    margin-bottom: 3px; /* Added margin below the logo */
-  }
-  
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-  
-  .captcha-container {
-    width: 400px;
-    height: 400px;
-    background-color: white;
-    border-radius: 10px; /* Adjust radius as needed */
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Add shadow effect */
-    display: flex; /* Make captcha-container flex container */
-    flex-direction: column; /* Arrange items vertically */
-    align-items: center; /* Center items horizontally */
-    justify-content: center; /* Center items vertically */
-  }
-  
-  .captcha-container h2 {
-    margin-bottom: 20px;
-  }
-  
-  .captcha-container button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #110e21; /* Disabled button color */
-    color: white;
-    cursor: pointer;
-    opacity: 0.5; /* Reduced opacity for disabled state */
-    pointer-events: none; /* Disable click interaction */
-  }
-  
-  .captcha-container button:disabled { /* Styles for disabled button state */
-    opacity: 1; /* Restore opacity */
-    pointer-events: auto; /* Enable click interaction */
-  }
-  .progress {
-    width: 100%;
-    background: #ccc;
-    margin-top: 20px;
-  }
-  
-  .progress-bar {
-    height: 20px;
-    background: #4caf50;
-    width: 0%; /* Barre de progression initialement vide */
-  }
+  background-color: #110e21;
+}
+
+.logo {
+  width: 160px;
+  margin-bottom: 13px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.captcha-container {
+  width: 400px;
+  height: 320px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.captcha-container h2 {
+  margin-bottom: -10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.captcha-container p {
+  margin-bottom: 30px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.8rem;
+  color: #797878;
+}
+
+.captcha-container button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #110e21;
+  color: white;
+  cursor: pointer;
+}
+
+.captcha-container button:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.progress {
+  width: 90%;
+  background: #ccc;
+  margin-top: 20px;
+}
+
+.progress-bar {
+  height: 20px;
+  background: #110e21;
+  width: 0%;
+  transition: width 0.5s ease;
+}
